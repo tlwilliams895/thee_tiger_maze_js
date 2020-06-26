@@ -4,3 +4,15 @@
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 25px;
 }
+
+#maze {
+  height: 500px;
+  background-color: gray;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  border: 1px solid purple;
+  flex-grow: 1;
+}
