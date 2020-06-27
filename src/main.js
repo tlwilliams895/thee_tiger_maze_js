@@ -22,7 +22,7 @@ let y;
 
 const maze_element = document.getElementById("maze");
 
-const creatMaze = function (blueprint) {
+const createMaze = function (blueprint) {
     for (let rowNum = 0; rowNum < blueprint.length; rowNum++) {
         const rowString = blueprint[rowNum];
         let div_blocks = "";
@@ -42,4 +42,4 @@ const creatMaze = function (blueprint) {
         maze_element.innerHTML += `<div class="row">${div_blocks}</div>`;
     }
 }
-creatMaze(map);
+createMaze(map);

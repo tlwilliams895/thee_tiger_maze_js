@@ -8,11 +8,24 @@
 #maze {
   height: 500px;
   background-color: gray;
+
+  /* Parent Properties */
   display: flex;
   flex-direction: column;
 }
 
 .row {
-  border: 1px solid purple;
+  /* border: 1px solid purple; */
   flex-grow: 1;
+
+  /* Parent Properties */
+  display: flex;
+}
+
+.block {
+  flex-grow: 1;
+}
+
+.block.wall {
+  background-color: goldenrod;
 }
