@@ -3,12 +3,13 @@
   text-align: center;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 25px;
+  background-image: image("image/tiger.jpg");
 }
 
 #maze {
   height: 500px;
   width: 850px;
-  background-color: gray;
+  background-color: black;
 
   /* Parent Properties */
   display: flex;
@@ -45,5 +46,4 @@
   height: 30px;
   position: absolute;
   background: green;
-  /* background: url("image/yesSheCodes.webp") repeat-x top; */
 }

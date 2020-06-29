@@ -21,7 +21,8 @@ let positionRow;
 let positionCol;
 
 const maze_element = document.getElementById("maze");
-
+// createMaze variable function provide by Randy during Demo
+// Completed assessment with personal study group (Deidre B and Elisia B)
 const createMaze = function (blueprint) {
     for (let rowNum = 0; rowNum < blueprint.length; rowNum++) {
         const rowString = blueprint[rowNum];
@@ -34,10 +35,10 @@ const createMaze = function (blueprint) {
                 div_blocks += `<div class="block wall" data-column="${colNum}" data-row="${rowNum}"></div>`;
             } else if (blockType === "S") {
                 div_blocks += `<div class="block" id="start" data-column="${colNum}" data-row="${rowNum}"></div>`;
-                positionCol = colNum;
                 positionRow = rowNum;
+                positionCol = colNum;
             } else if (blockType === "F") {
-                div_blocks += `<div class="block" id="finish" data-column="${colNum}" data-row="${rowNum}"></div>`
+                div_blocks += `<div class="block finish" data-column="${colNum}" data-row="${rowNum}"></div>`
             } else {
                 div_blocks += `<div class="block" data-column="${colNum}" data-row="${rowNum}"></div>`;
             }
@@ -45,6 +46,7 @@ const createMaze = function (blueprint) {
         maze_element.innerHTML += `<div class="row">${div_blocks}</div>`;
     }
 
+    // Create the box/user and starting position 
     let box = document.createElement("div");
     box.id = "box";
     document.getElementById("start").appendChild(box);
@@ -52,17 +54,20 @@ const createMaze = function (blueprint) {
 
     // Check to see if Tiger is inside the board and not a wall
     function canMove(colNum, rowNum) {
-        let move_box = document.querySelector("[data-column='${colNum}'][data-row='${rowNum}']");
+        let move_box = document.querySelector(`[data-column="${colNum}" ][data-row="${rowNum}"]`);
 
-        if (move_box.classList.contains("wall") !== false) {
-
+        if (move_box.classList.contains("wall") === false) {
             let box = document.getElementById("box");
             box.parentNode.removeChild(box);
-
             move_box.appendChild(box);
 
             positionRow = rowNum;
             positionCol = colNum;
+
+            // If-Statement for Winning Condition - Check if user reached the "F" position, then the game is over. 
+            if (move_box.classList.contains("finish")) {
+                document.getElementById("gamePlay").innerText = "Congratulations! You made it through the Tiger Maze!";
+            }
         }
         //return (positionY >= 0) && (positionY < map.length) && (positionX >= 0) && (positionX < map[positionY].length) && (map[positionY][positionX] != 1);
     }
@@ -97,6 +102,7 @@ const createMaze = function (blueprint) {
         }
         canMove(colNum, rowNum);
     }
+
 }
 createMaze(map);
 
