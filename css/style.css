@@ -7,6 +7,7 @@
 
 #maze {
   height: 500px;
+  width: 850px;
   background-color: gray;
 
   /* Parent Properties */
@@ -28,4 +29,21 @@
 
 .block.wall {
   background-color: goldenrod;
+}
+
+.block.start {
+  background-color: blue;
+}
+
+.block.finish {
+  background-color: purple;
+}
+
+/* Keydown Event for box */
+#box {
+  width: 35px;
+  height: 30px;
+  position: absolute;
+  background: green;
+  /* background: url("image/yesSheCodes.webp") repeat-x top; */
 }

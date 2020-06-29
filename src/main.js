@@ -17,8 +17,8 @@ const map = [
     "WWWWWWWWWWWWWWWWWWWWW",
 ];
 
-let x;
-let y;
+let positionRow;
+let positionCol;
 
 const maze_element = document.getElementById("maze");
 
@@ -29,17 +29,80 @@ const createMaze = function (blueprint) {
 
         for (let colNum = 0; colNum < rowString.length; colNum++) {
             const blockType = rowString[colNum];
+
             if (blockType === "W") {
-                div_blocks += `<div class="block wall"></div>`;
+                div_blocks += `<div class="block wall" data-column="${colNum}" data-row="${rowNum}"></div>`;
             } else if (blockType === "S") {
-                div_blocks += `<div class="block start"></div>`;
-                x = colNum;
-                y = rowNum;
+                div_blocks += `<div class="block" id="start" data-column="${colNum}" data-row="${rowNum}"></div>`;
+                positionCol = colNum;
+                positionRow = rowNum;
+            } else if (blockType === "F") {
+                div_blocks += `<div class="block" id="finish" data-column="${colNum}" data-row="${rowNum}"></div>`
             } else {
-                div_blocks += `<div class="block"></div>`;
+                div_blocks += `<div class="block" data-column="${colNum}" data-row="${rowNum}"></div>`;
             }
         }
         maze_element.innerHTML += `<div class="row">${div_blocks}</div>`;
     }
+
+    let box = document.createElement("div");
+    box.id = "box";
+    document.getElementById("start").appendChild(box);
+
+
+    // Check to see if Tiger is inside the board and not a wall
+    function canMove(colNum, rowNum) {
+        let move_box = document.querySelector("[data-column='${colNum}'][data-row='${rowNum}']");
+
+        if (move_box.classList.contains("wall") !== false) {
+
+            let box = document.getElementById("box");
+            box.parentNode.removeChild(box);
+
+            move_box.appendChild(box);
+
+            positionRow = rowNum;
+            positionCol = colNum;
+        }
+        //return (positionY >= 0) && (positionY < map.length) && (positionX >= 0) && (positionX < map[positionY].length) && (map[positionY][positionX] != 1);
+    }
+
+    document.addEventListener('keydown', logKey);
+
+    function logKey(tiger) {
+        //log.textContent += ` ${e.code}`;
+        let rowNum = positionRow;
+        let colNum = positionCol;
+
+        switch (tiger.code) {
+            // switch ((tiger.code) && (canMove)) {
+            case "ArrowUp":
+                rowNum--;
+                // boxElement = (boxTop -= 10);
+                break;
+            case "ArrowDown":
+                rowNum++;
+                // boxElement = (boxTop += 10);
+                break;
+            case "ArrowRight":
+                colNum++;
+                // boxElement = (boxLeft += 10);
+                break;
+            case "ArrowLeft":
+                colNum--;
+                // boxElement = (boxLeft -= 10);
+                break;
+                //default:
+                //return;
+        }
+        canMove(colNum, rowNum);
+    }
 }
 createMaze(map);
+
+// let blockSize = 10;
+
+// let playerPosition = {
+//     x: 0,
+//     y: 0
+// };
