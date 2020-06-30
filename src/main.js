@@ -75,6 +75,7 @@ const createMaze = function (blueprint) {
     document.addEventListener('keydown', logKey);
 
     function logKey(tiger) {
+        event.preventDefault();
         //log.textContent += ` ${e.code}`;
         let rowNum = positionRow;
         let colNum = positionCol;
