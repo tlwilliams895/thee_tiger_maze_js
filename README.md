@@ -1,5 +1,5 @@
 ## Maze Assessment by TL Williams
-[GitLab URL](https://tlwilliams895.gitlab.io/maze_assessment)
+[GitLab URL](https://tlwilliams895.github.io/thee_tiger_maze_js/)
 
 Purpose: Create a JavaScript game that displays a maze, and lets the player use the cursor keys to move through it one step at a time. The maze is a 2D array of cells which are either floors (passable) or walls (impassable).
 
